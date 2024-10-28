@@ -1,4 +1,4 @@
-from fastapi import Depends, APIRouter,HTTPException
+from fastapi import Depends, APIRouter,HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.responses import StreamingResponse
 from sqlmodel import Session, select
@@ -9,6 +9,8 @@ import os
 from gtts import gTTS
 from uuid import UUID
 from io import BytesIO
+from modules.jumbled_words.word_dictionary import word_dictionary, level_names
+from random import choice
 
 AUDIO_DIR = "modules/jumbled_words/audio_files"
 
@@ -103,3 +105,51 @@ def generate_audio(word: str, language: str = "en", session: Session = Depends(g
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating audio: {str(e)}")
+
+
+@router.get("/random_word_dict")
+def get_random_word_dict(level: str):
+    # Check if the provided level is valid
+    if level not in level_names:
+        raise HTTPException(status_code=400, detail="Invalid level name provided")
+
+    # Get words for the specified level
+    words_in_level = word_dictionary.get(level)
+    if not words_in_level:
+        raise HTTPException(status_code=404, detail="No words found for the specified level")
+
+    # Select a random word from the level
+    selected_word = choice(words_in_level)
+    return {
+        "english_word": selected_word["english_word"],
+        "meanings": selected_word["meanings"]
+    }
+
+
+@router.get("/generate_audio_dict")
+def generate_audio_dict(word: str, level: str, language: str = Query("en", enum=["en", "hi", "mr"])):
+    # Validate the level
+    if level not in level_names:
+        raise HTTPException(status_code=400, detail="Invalid level name provided")
+
+    # Fetch word data from word_dictionary
+    words_in_level = word_dictionary.get(level)
+    if not words_in_level:
+        raise HTTPException(status_code=404, detail="No words found for the specified level")
+
+    # Find the word in the level
+    word_data = next((w for w in words_in_level if w["english_word"].lower() == word.lower()), None)
+    if not word_data:
+        raise HTTPException(status_code=404, detail="Word not found in the specified level")
+
+    # Get the translation in the requested language
+    word_to_speak = word_data["meanings"].get(language) if language != "en" else word
+
+    # Generate audio for the word
+    tts = gTTS(text=word_to_speak, lang=language)
+    audio_buffer = BytesIO()
+    tts.write_to_fp(audio_buffer)
+    audio_buffer.seek(0)
+
+    # Stream audio file
+    return StreamingResponse(audio_buffer, media_type="audio/mpeg")

@@ -3,12 +3,26 @@ from fastapi import FastAPI
 from db.database import create_db_and_tables
 from mangum import Mangum
 from modules.jumbled_words.routers import router as jumbled_words_router
-AUDIO_DIR = "audio_files"
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 handler = Mangum(app)
 
+# Set up CORS middleware
+origins = [
+    "http://localhost:8000",
+    "https://production-api.fernglasz.in",
+    "https://staging-api.fernglasz.in",
+    "http://localhost:3000"
+]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(jumbled_words_router, prefix="/v1", tags=["Jumbled Words"])
 
