@@ -26,9 +26,9 @@ app.add_middleware(
 
 app.include_router(jumbled_words_router, prefix="/v1", tags=["Jumbled Words"])
 
-@app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
+# @app.on_event("startup")
+# def on_startup():
+#     create_db_and_tables()
 
 
 @app.get("/")
