@@ -11,8 +11,6 @@ handler = Mangum(app)
 # Set up CORS middleware
 origins = [
     "http://localhost:8000",
-    "https://production-api.fernglasz.in",
-    "https://staging-api.fernglasz.in",
     "http://localhost:3000"
 ]
 

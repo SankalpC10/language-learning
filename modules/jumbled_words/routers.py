@@ -165,3 +165,7 @@ def get_all_words_for_level(level: str):
         raise HTTPException(status_code=404, detail="No words found for the specified level")
 
     return words_in_level
+
+@router.get("/get_all_levels")
+def get_all_levels():
+    return level_names
