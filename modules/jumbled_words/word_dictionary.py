@@ -1,10 +1,15 @@
-level_names = [
-    "Starter", "Learner", "Explorer", "Achiever", "Champion", "Word Guru"
-]
+level_names = {
+    "1": "Starter",
+    "2": "Learner",
+    "3": "Explorer",
+    "4": "Achiever",
+    "5": "Champion",
+    "6": "Word Guru"
+}
 
 # Dictionary with English words as keys and their meanings in various languages
 word_dictionary = {
-    "Starter": [
+    "1": [
         {"english_word": "apple", "meanings": {"hi": "सेब", "mr": "सफरचंद"}},
         {"english_word": "book", "meanings": {"hi": "किताब", "mr": "पुस्तक"}},
         {"english_word": "cat", "meanings": {"hi": "बिल्ली", "mr": "मांजर"}},
@@ -22,7 +27,7 @@ word_dictionary = {
         {"english_word": "orange", "meanings": {"hi": "संतरा", "mr": "संत्री"}},
         # Add more Starter level words as needed
     ],
-    "Learner": [
+    "2": [
         {"english_word": "banana", "meanings": {"hi": "केला", "mr": "केळी"}},
         {"english_word": "chair", "meanings": {"hi": "कुर्सी", "mr": "खुर्ची"}},
         {"english_word": "doctor", "meanings": {"hi": "डॉक्टर", "mr": "डॉक्टर"}},
@@ -40,7 +45,7 @@ word_dictionary = {
         {"english_word": "road", "meanings": {"hi": "सड़क", "mr": "रस्ता"}},
         # Add more Learner level words as needed
     ],
-    "Explorer": [
+    "3": [
         {"english_word": "teacher", "meanings": {"hi": "शिक्षक", "mr": "शिक्षक"}},
         {"english_word": "house", "meanings": {"hi": "घर", "mr": "घर"}},
         {"english_word": "river", "meanings": {"hi": "नदी", "mr": "नदी"}},
@@ -54,7 +59,7 @@ word_dictionary = {
         {"english_word": "zebra", "meanings": {"hi": "ज़ेबरा", "mr": "झेब्रा"}},
         # Add more Explorer level words as needed
     ],
-    "Achiever": [
+    "4": [
         {"english_word": "adventure", "meanings": {"hi": "साहस", "mr": "साहस"}},
         {"english_word": "bicycle", "meanings": {"hi": "साइकिल", "mr": "सायकल"}},
         {"english_word": "cloud", "meanings": {"hi": "बादल", "mr": "ढग"}},
@@ -67,7 +72,7 @@ word_dictionary = {
         {"english_word": "journey", "meanings": {"hi": "यात्रा", "mr": "प्रवास"}},
         # Add more Achiever level words as needed
     ],
-    "Champion": [
+    "5": [
         {"english_word": "affection", "meanings": {"hi": "स्नेह", "mr": "स्नेह"}},
         {"english_word": "bargain", "meanings": {"hi": "सौदा", "mr": "घसाघीस"}},
         {"english_word": "courage", "meanings": {"hi": "साहस", "mr": "धैर्य"}},
@@ -80,7 +85,7 @@ word_dictionary = {
         {"english_word": "justice", "meanings": {"hi": "न्याय", "mr": "न्याय"}},
         # Add more Champion level words as needed
     ],
-    "Word Guru": [
+    "6": [
         {"english_word": "abundance", "meanings": {"hi": "प्रचुरता", "mr": "समृद्धी"}},
         {"english_word": "benevolent", "meanings": {"hi": "सद्भावनापूर्ण", "mr": "उदार"}},
         {"english_word": "catalyst", "meanings": {"hi": "प्रेरक", "mr": "प्रेरक"}},
