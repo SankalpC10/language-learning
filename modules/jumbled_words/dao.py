@@ -1,4 +1,4 @@
-from modules.jumbled_words.word_dictionary import word_dictionary
+from modules.common.word_dictionary import word_dictionary
 
 def get_all_words_for_level(level,set_lang,target_lang):
     words = word_dictionary[level]

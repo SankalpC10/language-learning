@@ -1,15 +1,8 @@
-from fastapi import Depends, APIRouter,HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi import APIRouter,HTTPException, Query
 from fastapi.responses import StreamingResponse
-from sqlmodel import Session, select
-from modules.jumbled_words.models import Word, WordCreate, Level
-from db.database import get_session
-import random
-import os
 from gtts import gTTS
-from uuid import UUID
 from io import BytesIO
-from modules.jumbled_words.word_dictionary import word_dictionary, level_names
+from modules.common.word_dictionary import word_dictionary, level_names
 from random import choice
 
 AUDIO_DIR = "modules/jumbled_words/audio_files"

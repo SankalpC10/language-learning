@@ -4,7 +4,7 @@ from models import Word
 from db.database import Session, engine
 import os
 
-AUDIO_DIR = "audio_files"
+AUDIO_DIR = "../jumbled_words/audio_files"
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 def generate_audio_for_words():
